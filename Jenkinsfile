@@ -21,6 +21,7 @@ pipeline{
                 script {
                     echo "--intializing--"
                     def dockerHome = tool 'docker'
+                    env.DOCKER_HOME = dockerHome
                 }
             }
         }

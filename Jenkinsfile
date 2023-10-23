@@ -39,18 +39,18 @@ pipeline{
             }
         }
         
-        stage("Push Docker Image") {
-            steps {                
-                script {
-                    echo "======== executing ========"
-                    sh "pwd"
-                    sh "ls"
-                    echo "push to hub"
-                    sh "docker tag mynodeapp jihen546/devopstp:mynodeapp"
-                    sh "docker push jihen546/devopstp:mynodeap"
-                }        
-            }
-        }              
+        // stage("Push Docker Image") {
+        //     steps {                
+        //         script {
+        //             echo "======== executing ========"
+        //             sh "pwd"
+        //             sh "ls"
+        //             echo "push to hub"
+        //             sh "docker tag mynodeapp jihen546/devopstp:mynodeapp"
+        //             sh "docker push jihen546/devopstp:mynodeap"
+        //         }        
+        //     }
+        // }              
     }
     
     post{

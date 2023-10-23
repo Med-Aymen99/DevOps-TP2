@@ -21,7 +21,6 @@ pipeline{
                 script {
                     echo "--intializing--"
                     def dockerHome = tool 'docker'
-                    env.PATH = "${dockerHome}/bin:${env.PATH}"
                 }
             }
         }
@@ -32,6 +31,7 @@ pipeline{
                 script {
                     echo "== executing =="
                     // sh "docker build -t ${DOCKER_IMAGE_NAME}:${TAG} ."
+                    sh "docker --version"
                     sh "docker ps"
                     echo "Building image"
                 }            

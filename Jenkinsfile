@@ -16,15 +16,15 @@ pipeline{
             }
         }
 
-        stage('Initialize') {
-            steps {
-                script {
-                    echo "--intializing--"
-                    def dockerHome = tool 'docker'
-                    env.DOCKER_HOME = dockerHome
-                }
-            }
-        }
+        // stage('Initialize') {
+        //     steps {
+        //         script {
+        //             echo "--intializing--"
+        //             def dockerHome = tool 'docker'
+        //             env.PATH = "${dockerHome}/bin:${env.PATH}"
+        //         }
+        //     }
+        // }
 
     //    build de l'image
         stage("Build Docker Image"){

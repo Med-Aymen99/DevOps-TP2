@@ -32,7 +32,7 @@ pipeline{
                 script {
                     echo "== executing =="
                     // sh "docker build -t ${DOCKER_IMAGE_NAME}:${TAG} ."
-                    sh "docker --version"
+                    sh "docker ps"
                     echo "Building image"
                 }            
             }

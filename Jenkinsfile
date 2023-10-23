@@ -5,7 +5,7 @@ pipeline{
         stage("Pull from GitHub") {
             steps {
                 echo "test1"
-                // git url: 'https://github.com/Med-Aymen99/DevOps-TP2.git', branch: 'master',
+                git url: 'https://github.com/Med-Aymen99/DevOps-TP2.git', branch: 'master',
                 sh "ls -ltr"
             }
         }

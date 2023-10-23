@@ -15,7 +15,6 @@ pipeline{
             steps {                
                 script {
                     echo "== executing =="
-                    sh "mvn clean package"
                     sh "docker build -t mynodeapp ."
                     echo "Building image"
                 }            

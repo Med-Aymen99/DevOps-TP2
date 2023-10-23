@@ -21,7 +21,7 @@ pipeline{
             steps {                
                 script {
                     echo "== executing =="
-                    docker.build("${DOCKER_IMAGE_NAME}:${TAG}")
+                    sh "docker build -t mynodeapp:latest ."
                     echo "Building image"
                 }            
             }

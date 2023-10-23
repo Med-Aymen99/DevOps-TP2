@@ -1,6 +1,12 @@
 pipeline{
     agent any
 
+    environment {
+        DOCKER_HUB_USERNAME = 'jihen546'
+        DOCKER_IMAGE_NAME = 'mynodeapp'
+        TAG = 'latest' 
+    }
+
     stages{
         stage("Pull from GitHub") {
             steps {
@@ -15,7 +21,7 @@ pipeline{
             steps {                
                 script {
                     echo "== executing =="
-                    sh "docker build -t mynodeapp ."
+                    docker.build("${DOCKER_IMAGE_NAME}:${TAG}")
                     echo "Building image"
                 }            
             }

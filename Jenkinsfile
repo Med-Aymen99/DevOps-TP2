@@ -16,12 +16,23 @@ pipeline{
             }
         }
 
+        stage('Initialize') {
+            steps {
+                script {
+                    echo "--intializing--"
+                    def dockerHome = tool 'docker'
+                    env.PATH = "${dockerHome}/bin:${env.PATH}"
+                }
+            }
+        }
+
     //    build de l'image
         stage("Build Docker Image"){
             steps {                
                 script {
                     echo "== executing =="
-                    sh "docker build -t mynodeapp:latest ."
+                    // sh "docker build -t ${DOCKER_IMAGE_NAME}:${TAG} ."
+                    sh "docker --version"
                     echo "Building image"
                 }            
             }

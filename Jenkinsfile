@@ -28,14 +28,17 @@ pipeline{
         }
         
         stage("Push Docker Image") {
-            steps {                
+            steps {
                 script {
                     docker.withRegistry('https://registry.hub.docker.com', 'dockerhub_id') {
-                        docker.image(" ${DOCKER_HUB_USERNAME}/${DOCKER_IMAGE_NAME}:${TAG}").push()
-                    }        
+                        echo "======== executing ========"
+                        sh "docker tag ${DOCKER_IMAGE_NAME}:${TAG} ${DOCKER_HUB_USERNAME}/${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_NAME}"
+                        sh "docker push ${DOCKER_HUB_USERNAME}/${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_NAME}"
+                    }
                 }
             }
-        }            
+        }
+            
     }
     
     post{

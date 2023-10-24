@@ -34,8 +34,8 @@ pipeline{
                     sh "pwd"
                     sh "ls"
                     echo "push to hub"
-                    sh "docker tag mynodeapp jihen546/devopstp:mynodeapp"
-                    sh "docker push jihen546/devopstp:mynodeap"
+                    sh "docker tag ${DOCKER_IMAGE_NAME}:${TAG} ${DOCKER_HUB_USERNAME}/devopstp:${DOCKER_IMAGE_NAME}"
+                    sh "docker push ${DOCKER_HUB_USERNAME}/devopstp:${DOCKER_IMAGE_NAME}"
                 }        
             }
         }              

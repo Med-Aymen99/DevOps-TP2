@@ -22,7 +22,7 @@ pipeline{
                 script {
                     echo "== executing =="
                     sh "docker build -t ${DOCKER_IMAGE_NAME}:${TAG} ."
-                    echo "Building image"
+                    echo "Image built"
                 }            
             }
         }
@@ -30,11 +30,11 @@ pipeline{
         stage("Push Docker Image") {
             steps {
                 script {
-                    docker.withRegistry('https://registry.hub.docker.com', 'dockerhub_id') {
+                    // docker.withRegistry('https://registry.hub.docker.com', 'dockerhub_id') {
                         // echo "======== executing ========"
                         // sh "docker tag ${DOCKER_IMAGE_NAME}:${TAG} ${DOCKER_HUB_USERNAME}/${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_NAME}"
                         // sh "docker push ${DOCKER_HUB_USERNAME}/${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_NAME}"
-                    }
+                    // }
                     echo "== out =="
                 }
             }

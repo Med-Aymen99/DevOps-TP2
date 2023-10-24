@@ -29,13 +29,25 @@ pipeline{
         
         stage("Push Docker Image") {
             steps {
-                script {
+                // script {
                     // docker.withRegistry('https://registry.hub.docker.com', 'dockerhub_id') {
                         // echo "======== executing ========"
                         // sh "docker tag ${DOCKER_IMAGE_NAME}:${TAG} ${DOCKER_HUB_USERNAME}/${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_NAME}"
                         // sh "docker push ${DOCKER_HUB_USERNAME}/${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_NAME}"
                     // }
-                    echo "== out =="
+                    // echo "== out =="
+                // }
+                script {
+                    echo "======== executing ========"
+                    sh "pwd"
+                    sh "ls"
+                    echo "push to hub"
+                    // Use the credentials by their ID
+                    withCredentials([usernamePassword(credentialsId: 'dockerhub_id',usernameVariable: 'DOCKER_HUB_USERNAME', passwordVariable: 'DOCKER_HUB_PASSWORD')]) {
+                        sh "docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PASSWORD"
+                        sh "docker tag ${DOCKER_IMAGE_NAME}:${TAG} ${DOCKER_HUB_USERNAME}/${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_NAME}"
+                        sh "docker push ${DOCKER_HUB_USERNAME}/${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_NAME}"
+                    }
                 }
             }
         }

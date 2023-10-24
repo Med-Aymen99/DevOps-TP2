@@ -32,8 +32,9 @@ pipeline{
                 script {
                     def DOCKER_HUB_USERNAME = 'your_username'
                     docker.withRegistry('https://registry.hub.docker.com', 'dockerhub_id') {
-                    docker.image(" ${DOCKER_HUB_USERNAME}/${DOCKER_IMAGE_NAME}:${TAG}").push()
-                }        
+                        docker.image(" ${DOCKER_HUB_USERNAME}/${DOCKER_IMAGE_NAME}:${TAG}").push()
+                    }        
+                }
             }
         }              
     }

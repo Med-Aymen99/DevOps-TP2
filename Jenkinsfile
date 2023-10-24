@@ -16,41 +16,29 @@ pipeline{
             }
         }
 
-        // stage('Initialize') {
-        //     steps {
-        //         script {
-        //             echo "--intializing--"
-        //             def dockerHome = tool 'docker'
-        //             env.PATH = "${dockerHome}/bin:${env.PATH}"
-        //         }
-        //     }
-        // }
-
     //    build de l'image
         stage("Build Docker Image"){
             steps {                
                 script {
                     echo "== executing =="
-                    // sh "docker build -t ${DOCKER_IMAGE_NAME}:${TAG} ."
-                    sh "docker --version"
-                    sh "docker ps"
+                    sh "docker build -t ${DOCKER_IMAGE_NAME}:${TAG} ."
                     echo "Building image"
                 }            
             }
         }
         
-        // stage("Push Docker Image") {
-        //     steps {                
-        //         script {
-        //             echo "======== executing ========"
-        //             sh "pwd"
-        //             sh "ls"
-        //             echo "push to hub"
-        //             sh "docker tag mynodeapp jihen546/devopstp:mynodeapp"
-        //             sh "docker push jihen546/devopstp:mynodeap"
-        //         }        
-        //     }
-        // }              
+        stage("Push Docker Image") {
+            steps {                
+                script {
+                    echo "======== executing ========"
+                    sh "pwd"
+                    sh "ls"
+                    echo "push to hub"
+                    sh "docker tag mynodeapp jihen546/devopstp:mynodeapp"
+                    sh "docker push jihen546/devopstp:mynodeap"
+                }        
+            }
+        }              
     }
     
     post{

@@ -21,22 +21,21 @@ pipeline{
             steps {                
                 script {
                     echo "== executing =="
-                    // sh "docker build -t ${DOCKER_IMAGE_NAME}:${TAG} ."
-                    docker.build("${DOCKER_IMAGE_NAME}:${TAG}")
+                    sh "docker build -t ${DOCKER_IMAGE_NAME}:${TAG} ."
                     echo "Building image"
                 }            
             }
         }
         
-        // stage("Push Docker Image") {
-        //     steps {                
-        //         script {
-        //             docker.withRegistry('https://registry.hub.docker.com', 'dockerhub_id') {
-        //                 docker.image(" ${DOCKER_HUB_USERNAME}/${DOCKER_IMAGE_NAME}:${TAG}").push()
-        //             }        
-        //         }
-        //     }
-        // }              
+        stage("Push Docker Image") {
+            steps {                
+                script {
+                    docker.withRegistry('https://registry.hub.docker.com', 'dockerhub_id') {
+                        docker.image(" ${DOCKER_HUB_USERNAME}/${DOCKER_IMAGE_NAME}:${TAG}").push()
+                    }        
+                }
+            }
+        }            
     }
     
     post{

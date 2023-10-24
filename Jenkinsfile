@@ -22,21 +22,13 @@ pipeline{
                 script {
                     echo "== executing =="
                     sh "docker build -t ${DOCKER_IMAGE_NAME}:${TAG} ."
-                    echo "Image built"
+                    echo "__Image built__"
                 }            
             }
         }
         
         stage("Push Docker Image") {
             steps {
-                // script {
-                    // docker.withRegistry('https://registry.hub.docker.com', 'dockerhub_id') {
-                        // echo "======== executing ========"
-                        // sh "docker tag ${DOCKER_IMAGE_NAME}:${TAG} ${DOCKER_HUB_USERNAME}/${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_NAME}"
-                        // sh "docker push ${DOCKER_HUB_USERNAME}/${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_NAME}"
-                    // }
-                    // echo "== out =="
-                // }
                 script {
                     echo "======== executing ========"
                     sh "pwd"
@@ -48,6 +40,7 @@ pipeline{
                         sh "docker tag ${DOCKER_IMAGE_NAME}:${TAG} ${DOCKER_HUB_USERNAME}/${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_NAME}"
                         sh "docker push ${DOCKER_HUB_USERNAME}/${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_NAME}"
                     }
+                    echo "__Image pushed__"
                 }
             }
         }

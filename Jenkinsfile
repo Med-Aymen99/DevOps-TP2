@@ -12,6 +12,7 @@ pipeline{
             steps {
                 echo "test1"
                 git url: 'https://github.com/Med-Aymen99/DevOps-TP2.git', branch: 'master'
+                credentialsId: 'github-credentials'
                 sh "ls -ltr"
             }
         }

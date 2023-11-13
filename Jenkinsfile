@@ -10,14 +10,6 @@ pipeline{
 
     stages{
 
-        stage('Print PATH') {
-            steps {
-                script {
-                    bat 'echo %PATH%'
-                }
-            }
-        }
-
         stage("Pull from GitHub") {
             steps {
                 echo "test1"

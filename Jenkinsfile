@@ -4,7 +4,8 @@ pipeline{
     environment {
         DOCKER_HUB_USERNAME = 'jihen546'
         DOCKER_IMAGE_NAME = 'mynodeapp'
-        TAG = 'latest' 
+        TAG = 'latest'
+        K8S_DEPLOYMENT_NAME = 'nodejs-app-deployment'
     }
 
     stages{
@@ -42,6 +43,18 @@ pipeline{
                     }
                     echo "__Image pushed__"
                 }
+            }
+        }
+
+        stage("Deploy to Kubernetes") {
+            steps {
+                script {
+                    echo "======== Deploying to Kubernetes ========"
+                    sh "kubectl version"
+                    // sh "kubectl create deployement ${K8S_DEPLOYMENT_NAME} --image=${DOCKER_HUB_USERNAME}/${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_NAME}"
+                    // sh "kubectl set image deployment/${K8S_DEPLOYMENT_NAME} ${K8S_DEPLOYMENT_NAME}=${DOCKER_HUB_USERNAME}/${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_NAME} -n ${K8S_NAMESPACE}"
+                }
+
             }
         }
             

@@ -50,7 +50,9 @@ pipeline{
             steps {
                 script {
                     echo "======== Deploying to Kubernetes ========"
-                    sh "kubectl version"
+                    def kubectlPath = "C:\\ProgramData\chocolatey\bin"
+                    bat "${kubectlPath} kubectl version"
+                    // sh "kubectl version"
                     // sh "kubectl create deployement ${K8S_DEPLOYMENT_NAME} --image=${DOCKER_HUB_USERNAME}/${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_NAME}"
                     // sh "kubectl set image deployment/${K8S_DEPLOYMENT_NAME} ${K8S_DEPLOYMENT_NAME}=${DOCKER_HUB_USERNAME}/${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_NAME} -n ${K8S_NAMESPACE}"
                 }

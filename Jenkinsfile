@@ -22,7 +22,7 @@ pipeline{
             steps {                
                 script {
                     echo "__Building Docker Image__"
-                    docker.build("${DOCKER_IMAGE_NAME}:${TAG}")
+                    docker.build("${DOCKER_HUB_USERNAME}/${DOCKER_IMAGE_NAME}:${TAG}")
                     echo "__Image built__"
                 }            
             }
@@ -32,7 +32,6 @@ pipeline{
             steps {
                 script {
                     echo "__Pushing Docker Image__"
-                    sh "docker tag ${DOCKER_IMAGE_NAME}:${TAG} ${DOCKER_HUB_USERNAME}/${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_NAME}"
                     docker.withRegistry('https://registry.hub.docker.com', 'dockerhub_id') {
                         docker.image("${DOCKER_HUB_USERNAME}/${DOCKER_IMAGE_NAME}:${TAG}").push()
                     }

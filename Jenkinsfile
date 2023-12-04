@@ -34,7 +34,6 @@ pipeline{
                     echo "__Pushing Docker Image__"
                     docker.withRegistry('https://registry.hub.docker.com', 'dockerhub_id') {
                         docker.image("${DOCKER_HUB_USERNAME}/${DOCKER_IMAGE_NAME}:${TAG}").push()
-                        docker.image("${DOCKER_HUB_USERNAME}/${DOCKER_IMAGE_NAME}:${TAG}").tag("${DOCKER_HUB_USERNAME}/${DOCKER_IMAGE_NAME}:${TAG}", "registry.hub.docker.com/${DOCKER_HUB_USERNAME}/${DOCKER_IMAGE_NAME}:${TAG}")
                     }
                     echo "__Image pushed__"
                 }

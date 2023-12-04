@@ -32,7 +32,7 @@ pipeline{
             steps {
                 script {
                     echo "__Pushing Docker Image__"
-                    docker.withRegistry('https://registry.hub.docker.com', 'credentials-id') {
+                    docker.withRegistry('https://registry.hub.docker.com', 'dockerhub_id') {
                         docker.image("${DOCKER_HUB_USERNAME}/${DOCKER_IMAGE_NAME}:${TAG}").push()
                     }
                     echo "__Image pushed__"
